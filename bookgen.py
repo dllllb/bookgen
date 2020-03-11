@@ -18,6 +18,19 @@ from traitlets.config import Config
 
 from mermaid import MermaidExtension
 
+from nbconvert.preprocessors import ClearOutputPreprocessor
+
+class HideSourcePreprocessor(ClearOutputPreprocessor):
+    def preprocess(self, nb, resources):
+        for cell in nb.cells:
+            if cell.cell_type == 'code':
+                if cell.get('metadata', {}).get('jupyter', {}).get('source_hidden', False):
+                    cell.transient = {
+                        'remove_source': True
+                    }
+
+        return nb, resources
+
 script_dir = os.path.dirname(os.path.realpath(__file__))
 
 if len(sys.argv) > 1:
@@ -42,10 +55,15 @@ for fname in fnames:
             md += f.read()
     elif fname.suffix == '.ipynb':
         c = Config()
+
         bname = os.path.basename(fname)
         content_fnt = bname+'_{unique_key}_{cell_index}_{index}{extension}'
         c.ExtractOutputPreprocessor.output_filename_template = content_fnt
+
+        c.MarkdownExporter.preprocessors = [HideSourcePreprocessor]
+
         me = MarkdownExporter(config=c)
+
         with open(fname, 'r') as f:
             text, res = me.from_file(f)
             md += text
