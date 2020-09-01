@@ -71,7 +71,7 @@ for fname in fnames:
                 with open(f'{out_path}/{cfn}', 'wb') as f:
                     f.write(body)
     else:
-        raise Excepton(f'unknown extension {fname.suffix}')
+        raise AttributeError(f'unknown extension {fname.suffix}')
 
 body = markdown.markdown(
     md,
