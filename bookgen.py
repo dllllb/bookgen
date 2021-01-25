@@ -1,9 +1,9 @@
-import sys
 import os
 import os.path
 from pathlib import Path
 import shutil
 from glob import glob
+import argparse
 
 from nbconvert import MarkdownExporter
 from traitlets.config import Config
@@ -27,15 +27,18 @@ class HideSourcePreprocessor(ClearOutputPreprocessor):
 
 script_dir = os.path.dirname(os.path.realpath(__file__))
 
-if len(sys.argv) > 1:
-    path = sys.argv[1]
-else:
-    path = '.'
+parser = argparse.ArgumentParser()
+parser.add_argument('input', default='.')
+parser.add_argument('-o', '--output')
+args = parser.parse_args()
 
-out_path = f'{os.path.realpath(path)}_build'
+if args.output is None:
+    out_path = f'{os.path.realpath(args.input)}_build'
+else:
+    out_path = args.output
 
 os.mkdir(out_path)
-os.chdir(path)
+os.chdir(args.input)
 
 md = """
 [TOC]
