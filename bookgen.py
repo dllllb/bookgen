@@ -1,10 +1,3 @@
-#!/usr/bin/env python
-
-# Usage: ./make.py {path-to-book-source}
-# all .md files in the selected directory will be in the single-file HTML book
-# sorted order of file names defines the order of content in the book
-# use number prefixes for file names to define the desired order of content
-
 import sys
 import os
 import os.path

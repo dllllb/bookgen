@@ -12,3 +12,6 @@ Markdown = ">=2.6"
 
 [requires]
 python_version = "3.8"
+
+[scripts]
+gendoc = 'python bookgen.py doc'
