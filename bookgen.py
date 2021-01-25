@@ -4,7 +4,6 @@ import os.path
 from pathlib import Path
 import shutil
 from glob import glob
-import markdown
 
 from nbconvert import MarkdownExporter
 from traitlets.config import Config
@@ -12,6 +11,8 @@ from traitlets.config import Config
 from mermaid import MermaidExtension
 
 from nbconvert.preprocessors import ClearOutputPreprocessor
+
+import markdown
 
 class HideSourcePreprocessor(ClearOutputPreprocessor):
     def preprocess(self, nb, resources):

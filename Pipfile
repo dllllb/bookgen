@@ -9,6 +9,7 @@ pylint = "*"
 [packages]
 nbconvert = ">5"
 Markdown = ">=2.6"
+jupyter = "*"
 
 [requires]
 python_version = "3.8"
