@@ -36,7 +36,10 @@ out_path = f'{os.path.realpath(path)}_build'
 os.mkdir(out_path)
 os.chdir(path)
 
-md = "[TOC]\n\n"
+md = """
+[TOC]
+
+"""
 
 fnames = [fname for fname in Path('.').glob('**/*.md')]
 fnames += [fname for fname in Path('.').glob('**/*.ipynb')]
