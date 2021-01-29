@@ -15,5 +15,5 @@ jupyter = "*"
 python_version = "3.8"
 
 [scripts]
-doc_pdf = 'sh make_pdf.sh'
+doc_pdf = './make_pdf.sh'
 doc_html = 'python bookgen.py -t html doc'
