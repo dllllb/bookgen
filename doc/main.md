@@ -25,7 +25,7 @@ pandoc book.md -o book.pdf
 Equation:
 $$ \sum_{i=1}^{\infty} x_i $$
 
-Inline equation: $ e^x $
+Inline equation: $e^x$
 
 ## Mermaid support
 

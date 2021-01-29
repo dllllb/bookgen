@@ -9,6 +9,7 @@ from nbconvert import MarkdownExporter
 from traitlets.config import Config
 
 from mermaid import MermaidExtension
+from include import MarkdownInclude
 
 from nbconvert.preprocessors import ClearOutputPreprocessor
 
@@ -77,7 +78,12 @@ if args.target == 'html':
 
     body = markdown.markdown(
         md,
-        extensions=['fenced_code', 'codehilite', 'toc', MermaidExtension()],
+        extensions=[
+            'fenced_code',
+            'codehilite',
+            'toc',
+            MermaidExtension(),
+            MarkdownInclude()],
         encoding='utf-8',
         tab_length=2)
 
