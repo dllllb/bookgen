@@ -5,6 +5,8 @@ verify_ssl = true
 
 [dev-packages]
 pylint = "*"
+matplotlib = "*"
+pandas = "*"
 
 [packages]
 nbconvert = ">5"
