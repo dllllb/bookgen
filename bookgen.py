@@ -31,7 +31,6 @@ script_dir = os.path.dirname(os.path.realpath(__file__))
 parser = argparse.ArgumentParser()
 parser.add_argument('input', default='.')
 parser.add_argument('-o', '--output')
-parser.add_argument('-t', '--target', default='md')
 args = parser.parse_args()
 
 if args.output is None:
@@ -72,43 +71,40 @@ for fname in fnames:
     else:
         raise AttributeError(f'unknown extension {fname.suffix}')
 
-if args.target == 'html':
-    mdx =  '[TOC]\n'
-    mdx += md
 
-    body = markdown.markdown(
-        md,
-        extensions=[
-            'fenced_code',
-            'codehilite',
-            'toc',
-            MermaidExtension(),
-            MarkdownInclude()],
-        encoding='utf-8',
-        tab_length=2)
+mdx =  '[TOC]\n'
+mdx += md
 
-    with open(os.path.join(script_dir, 'template.html')) as f:
-        template = f.read()
+body = markdown.markdown(
+    md,
+    extensions=[
+        'fenced_code',
+        'codehilite',
+        'toc',
+        MermaidExtension(),
+        MarkdownInclude()],
+    encoding='utf-8',
+    tab_length=2)
 
-    html = template + body
+with open(os.path.join(script_dir, 'template.html')) as f:
+    template = f.read()
 
-    with open(f'{out_path}/index.html', 'w', encoding='utf-8') as f:
-        f.write(html)
+html = template + body
 
-    resources = [
-        'mdenc.css',
-        'pygments.css',
-        'mermaid.min.8.3.1.js',
-        'katex.min.0.11.1.js',
-        'katex.auto-render.min.0.11.1.js',
-        'katex.min.0.11.1.css'
-    ]
+with open(f'{out_path}/index.html', 'w', encoding='utf-8') as f:
+    f.write(html)
 
-    for fname in resources:
-        shutil.copyfile(f'{script_dir}/{fname}', f'{out_path}/{fname}')
-else:
-    with open(f'{out_path}/book.md', 'w', encoding='utf-8') as f:
-        f.write(md)
+resources = [
+    'mdenc.css',
+    'pygments.css',
+    'mermaid.min.8.3.1.js',
+    'katex.min.0.11.1.js',
+    'katex.auto-render.min.0.11.1.js',
+    'katex.min.0.11.1.css'
+]
+
+for fname in resources:
+    shutil.copyfile(f'{script_dir}/{fname}', f'{out_path}/{fname}')
 
 for ext in ['png', 'jpg', 'jpeg']:
     for fname in Path('.').glob(f'**/*.{ext}'):
