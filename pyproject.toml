@@ -1,0 +1,28 @@
+[project]
+name = "bookgen"
+version = "0.1.0"
+description = "Book generation tool"
+requires-python = ">=3.8"
+dependencies = [
+    "nbconvert>5",
+    "Markdown>=2.6",
+    "notebook>7",
+]
+
+[dependency-groups]
+dev = [
+    "pylint",
+    "matplotlib>3",
+    "pandas",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.ruff]
+line-length = 88
+target-version = "py38" 
