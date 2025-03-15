@@ -1,7 +1,11 @@
 [project]
 name = "bookgen"
 version = "0.1.0"
-description = "Book generation tool"
+description = "Book generator based on markdown syntax"
+readme = "README.md"
+authors = [
+    {name = "Dmitri Babaev", email = "dmitri.babaev@gmail.com"},
+]
 requires-python = ">=3.8"
 dependencies = [
     "nbconvert>5",
