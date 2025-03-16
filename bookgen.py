@@ -36,7 +36,7 @@ args = parser.parse_args()
 if args.output is None:
     out_path = f'{os.path.realpath(args.input)}_build'
 else:
-    out_path = args.output
+    out_path = os.path.realpath(args.output)
 
 os.mkdir(out_path)
 os.chdir(args.input)
@@ -66,8 +66,9 @@ for fname in fnames:
             text, res = me.from_file(f)
             md += text
             for cfn, body in res['outputs'].items():
-                with open(f'{out_path}/{cfn}', 'wb') as f:
-                    f.write(body)
+                print(os.curdir)
+                with open(f'{out_path}/{cfn}', 'wb') as fw:
+                    fw.write(body)
     else:
         raise AttributeError(f'unknown extension {fname.suffix}')
 

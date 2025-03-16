@@ -9,7 +9,7 @@ authors = [
 requires-python = ">=3.8"
 dependencies = [
     "nbconvert>5",
-    "Markdown>=2.6",
+    "Markdown>=2.6,<3.2",
     "notebook>7",
 ]
 
