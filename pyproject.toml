@@ -21,7 +21,7 @@ dev = [
 ]
 
 [project.scripts]
-bookgen = "bookgen"
+bookgen = "bookgen:__main__"
 
 [build-system]
 requires = ["hatchling"]
